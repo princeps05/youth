@@ -1,0 +1,19 @@
+<script id="template" type="text/x-handlebars-template">
+<div class="table-responsive">
+	<table class="table table-condensed">
+		<thead><tr><td colspan="3"><h4>기도제목</h4></td></tr></thead>
+		<tbody id="teamPrayList">
+			{{#result}}
+			<tr>
+				<td>
+					<div class="input-group input-group-md">
+						<span class="input-group-addon">{{plusOne @index}}</span>
+						<textarea class="form-control pray" data-key="title" rows="2">{{title}}</textarea>
+					</div>
+				</td>
+			</tr>
+			{{/result}}
+		</tbody>
+	</table>
+</div>
+</script>

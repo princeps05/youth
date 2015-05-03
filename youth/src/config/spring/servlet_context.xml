@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+<mvc:resources mapping="/css/**" location="/css/**" />
+<mvc:resources mapping="/img/**" location="/img/**" />
+<mvc:resources mapping="/js/**" location="/js/**" />
+<mvc:resources mapping="/fonts/**" location="/fonts/" />	
+ <mvc:resources mapping="/mp3/**" location="/mp3/" />
+ 
+<context:component-scan base-package="spring.board" />
+
+	
+	<mvc:annotation-driven />
+ 
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	  <property name="order" value="1" />
+	  <property name="mediaTypes">
+		<map>
+		   <entry key="jsonp" value="application/json" />
+		   <entry key="json" value="application/json" />
+		</map>
+	  </property>
+	  
+	  <property name="defaultViews">
+		<list>
+			<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+		</list>
+	  </property>
+		<property name="viewResolvers">
+			<list>
+  <!-- CustomView Resolver 설정(다중View를 사용하기 위해, 확장자가 JSP인경우 NULL을 리턴하도록 구현함)
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1" 
+      p:viewClass="org.springframework.web.servlet.view.JstlView" 
+      p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+ --> 
+<!-- UrlBasedViewResolver 설정(확장자가 html인 데이터도 보여줄 수 있도록 다중 뷰 구현함)  
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2" 
+      p:viewClass="org.springframework.web.servlet.view.JstlView" 
+      p:prefix="/WEB-INF/html/" p:suffix=".html"/>
+-->       
+			</list>
+		</property>	   
+	</bean>
+
+
+
+</beans>

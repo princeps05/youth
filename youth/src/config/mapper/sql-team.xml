@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="team">
+ 
+	<insert id="insertTeamStatistic" parameterType="spring.board.model.Statistic">
+		insert into 
+			weekly_team_statistic
+			(days, teamCode, this_week_attend, this_week_absence, this_week_fresh) 
+		value 
+			(#{days}, #{teamCode}, #{this_week_attend}, #{this_week_absence}, #{this_week_fresh}) 
+	</insert>
+
+	<update id="updateTeamStatistic" parameterType="spring.board.model.Statistic">
+		UPDATE 
+			weekly_team_statistic  
+		SET 
+			this_week_attend = #{this_week_attend} ,   				
+			this_week_absence = #{this_week_absence} ,
+			this_week_fresh = #{this_week_fresh}
+		WHERE  
+			days = #{days} 
+		and 
+			teamCode = #{teamCode}  
+	</update>
+
+	<insert id="insertMember" parameterType="spring.board.model.Member">
+		insert into
+			midfield
+			(teamCode, name, state, no)
+		value
+			(#{teamCode}, #{name}, #{state}, #{no}) 
+	</insert>
+
+	<insert id="insertMemberAttend" parameterType="spring.board.model.Member">
+		insert into
+			attend
+			(days, attend, name, fresh, teamCode, team)
+		value
+			(#{days}, #{attend}, #{name}, #{fresh}, #{teamCode}, #{team})
+	</insert>
+
+	<insert id="insertThisWeekTeamAttend" parameterType="spring.board.model.Member">
+		insert into
+			attend
+			(days, attend, name, fresh, teamCode, team)
+		<foreach collection="list" item="member" open="values ( " separator=" ),( " close=" ) ">
+			#{member.days}, #{member.attend}, #{member.name}, #{member.fresh}, #{member.teamCode}, #{member.team}
+		</foreach>	
+	</insert>
+
+	<update id="updateMemberState" parameterType="spring.board.model.Member">
+		UPDATE 
+			midfield  
+		SET 
+			state = #{state} 
+		WHERE 
+			teamCode = #{teamCode} 
+		and 
+			name = #{name} 		
+	</update>
+
+	<update id="updateThisWeekTeamAttend" parameterType="spring.board.model.Member">
+		UPDATE 
+			attend  
+		SET 
+			attend = #{attend} ,   				
+			fresh = #{fresh}  
+		WHERE  
+			days = #{days} 
+		and 
+			name = #{name} 
+	</update>
+	
+	<update id="updateMemberAttend" parameterType="spring.board.model.Member">
+		UPDATE
+			attend
+		SET
+			fresh = #{fresh}
+		WHERE
+			days = #{days} 
+		and 
+			name = #{name} 			
+	</update>
+	
+	<insert id="insertThisWeekTeamPray" parameterType="spring.board.model.Pray">
+		insert into
+			pray
+			(days, teamCode, title)
+		<foreach collection="list" item="pray" open="values ( " separator=" ),( " close=" ) ">
+			#{pray.days}, #{pray.teamCode}, #{pray.title}
+		</foreach>
+	</insert>	
+
+	<delete id="deleteTeamPray" parameterType="spring.board.model.Pray">
+		DELETE FROM 
+			pray
+		WHERE 
+			days = #{days}
+		AND
+			teamCode = #{teamCode}  
+	</delete>
+
+	<delete id="deleteTeamAttend" parameterType="spring.board.model.Member">
+		DELETE FROM 
+			attend
+		USING
+			attend, midfield	
+		WHERE		
+			attend.name = midfield.name
+		AND			
+			attend.days = #{days}
+		AND
+			midfield.teamCode = #{teamCode}  
+	</delete>
+
+	<delete id="deleteTeamStatistic" parameterType="spring.board.model.Statistic">
+		DELETE FROM 
+			weekly_team_statistic
+		WHERE		
+			weekly_team_statistic.days = #{days}
+		AND
+			weekly_team_statistic.teamCode = #{teamCode} 
+	  	<if test="department != null and department != '' ">
+	  	and
+	  		weekly_team_statistic.department = #{department}
+	  	</if>		 
+	</delete>
+
+</mapper>

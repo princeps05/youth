@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko" manifest="appcache.manifest">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+<link rel="icon" href="favicon.ico?v=20140908" type="image/x-icon">
+
+<!--<link rel="stylesheet" href="allInOne/main.css?v=20140909">-->
+<!--<link rel="stylesheet" href="css/one.css">-->
+<script>
+      var cb = function() {
+        var l = document.createElement('link'); l.rel = 'stylesheet';
+        l.href = 'allInOne/main.css?v=20140909';
+        var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame;
+      if (raf) raf(cb);
+      else window.addEventListener('load', cb);
+</script>
+<!--<script defer src="allInOne/main.js?v=20140909"></script>-->
+<script defer data-main="js/main" src="js/lib/require.min.js?v=20140909"></script>
+</head>
+
+<body>
+  <div class="container-fluid" id="wrapper">
+    <header>
+		<h3>두레교회</h3>
+		<button type="button" id="menuBtn" class="btn btn-default btn-xs"><span class="icon icon-star"></span></button>
+		<button type="button" id="audioBtn" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="icon icon-sound"></span></button>
+    </header>
+
+	<nav id="sidebar-wrapper"></nav>
+
+    <article id="page-main-wrapper" class="active">
+		<header class="header" id="sumStatistic">
+			<h4><span id="department"></span>청년부<span> 출석</span></h4>
+			<input id="mainCalendar" type="text" data-value="" />
+			<h5><span>이번주일 : </span><span id="h_this_week_attend"></span>/<span id="h_this_week_fresh"></span> <span>(지난주일 : </span><span id="h_last_week_attend"></span>/<span id="h_last_week_fresh"></span>)</h5>
+		</header>
+		<section class="row" id="thisWeekStatistic"></section>
+		<section class="row" id="thisWeekTeamReport"></section>
+	</article>
+    
+    <article id="audio-wrapper"></article>
+    
+    <article id="page-team-wrapper">    
+    	<header class="header">
+    		<h4 id="t_team" data-teamcode=""></h4>
+    		<input id="t_department" type="hidden" />
+    		<input id="teamCalendar" type="text" data-value="" />
+   		</header>
+   		<section class="row" id="teamAttend"></section>	
+    	<section class="row" id="teamPray"></section>
+    	<section class="row" id="teamFresh"></section>
+    	<section class="row" id="teamButton"></section>
+    </article>
+    
+    <article id="page-my-wrapper"></article>
+
+    <footer><h4>&nbsp;</h4></footer>
+  </div>
+</body>
+</html>

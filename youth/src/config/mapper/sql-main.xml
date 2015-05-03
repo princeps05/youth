@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="main">
+	
+	<select id="getMember" resultType="spring.board.model.Member">
+		select
+			distinct team.department, team.teamCode, team.team, 
+			midfield.name, midfield.state
+		from
+			midfield, team
+		where
+			team.teamCode = midfield.teamCode
+		and
+			midfield.name = #{name}
+	</select>
+	
+	<select id="getTeamStatistic" resultType="spring.board.model.Statistic">
+	  select 
+	  	* 
+	  from 
+	  	weekly_team_statistic, team
+	   <where>
+	   	team.teamCode = weekly_team_statistic.teamCode
+  	  	<if test=" department != null and department != '' ">
+	  	and
+	  		team.department = #{department}
+	  	</if>	   	
+  	  	<if test=" teamCode != null and teamCode != '' ">
+	  	and
+	  		weekly_team_statistic.teamCode = #{teamCode}
+	  	</if>
+  	  	<if test=" days != null and days != '' ">
+  	  	and
+	  		weekly_team_statistic.days = #{days}
+	  	</if>	  	
+	  </where>	
+	</select>
+
+	<select id="getDepartmentStatistic" resultType="spring.board.model.Statistic">
+	  select 
+	  	* 
+	  from 
+	  	weekly_department_statistic, team
+	  <where>
+  	  	<if test=" teamCode != null and teamCode != '' ">
+	  	and
+	  		team.weekly_team_statistic.teamCode = #{teamCode}
+	  	</if>	  
+  	  	<if test=" department != null and department != '' ">
+	  		weekly_department_statistic.department = #{department}
+	  	</if>
+  	  	<if test=" days != null and days != '' ">
+  	  	and
+	  		weekly_department_statistic.days = #{days}
+	  	</if>	  	
+	  </where>	
+	</select>
+	
+	<select id="getTeamList" parameterType="Integer" resultType="spring.board.model.Team">
+	  select 
+	  	department	,
+	  	team	,
+	  	teamCode
+	  from
+	  	team
+	  where
+	  	no = #{no}
+	  order by teamCode;
+	</select>
+	
+	<select id="getNo" parameterType="String" resultType="Integer">
+	  select 
+	  	no
+	  from
+	  	no
+	  where
+	  	updated &lt;= #{value} 
+		ORDER BY ABS( DATEDIFF( updated,  #{value}  ) ) LIMIT 1
+	</select>
+	
+	<select id="getTeamCount" resultType="Integer">
+	  select 
+	  	count(team) 
+	  from 
+	  	team
+  	  <where>
+  	  	<if test=" department != null and department != '' ">
+	  		department = #{department}
+	  	</if>
+	  </where>		
+	</select>	
+
+	<select id="getFreshCount" resultType="Integer">
+	  select 
+	  	count(*) 
+	  from 
+	  	attend
+	  where
+	    attend = #{attend}
+	  and
+	    fresh = #{fresh}
+	  and
+	    name = #{name}
+	</select>
+
+	<select id="getAttendCount" resultType="Integer">
+	  select 
+	  	count(*) 
+	  from 
+	  	attend
+  	  <where>
+	   	<if test="days != null and days != '' ">
+  	  	and
+	  		attend.days = #{days}
+	  	</if>
+	   	<if test="attend != null and attend != '' ">
+  	  	and
+	  		attend.attend = #{attend}
+	  	</if>	  	
+	   	<if test="name != null and name != '' ">
+  	  	and
+	  		attend.name = #{name}
+	  	</if>
+	   	<if test="fresh != null and fresh != '' ">
+  	  	and
+	  		attend.fresh = #{fresh}
+	  	</if>
+	  	<if test="teamCode != null and teamCode != '' ">
+	  	and
+	  		attend.teamCode = #{teamCode}
+	  	</if>		  		  	
+	  </where>		
+	</select>
+		
+	<select id="getPrayList" resultType="spring.board.model.Pray">
+	  select 
+	    pray.teamCode,
+	   	pray.days,
+	   	pray.title,
+	   	team.department,
+	   	team.team 
+	  from 
+	  	pray, team
+	  <where>
+	  		pray.teamCode = team.teamCode 
+	  	and
+	  		team.no = #{no} 
+	   	<if test="days != null and days != '' ">
+  	  	and
+	  		pray.days = #{days}
+	  	</if>
+	  	<if test="teamCode != null and teamCode != '' ">
+	  	and
+	  		pray.teamCode = #{teamCode}
+	  	</if>
+	  	<if test="department != null and department != '' ">
+	  	and
+	  		team.department = #{department}
+	  	</if>		  	
+	  </where>
+	</select>		
+		
+	<select id="getAttendList" parameterType="spring.board.model.Member" resultType="spring.board.model.Member">
+	  select 
+	  	attend.days,
+		attend.team,
+		attend.teamCode,
+		attend.name,
+		attend.attend,
+		attend.fresh,
+		team.department,
+		team.team 
+	  from 
+	  	attend, team
+	  <where>
+	  		attend.teamCode = team.teamCode
+	  	and
+	  		team.no = #{no} 	  		
+	  	and
+	  		team.teamCode = #{teamCode}
+	  	<if test="days != null and days != '' ">
+	  	and
+	  		attend.days = #{days}
+	  	</if>
+	  	<if test="attend != null and attend != '' ">
+	  	and
+	  		attend.attend = #{attend}
+	  	</if>
+	  	<if test="fresh != null and fresh != '' ">
+	  	and
+	  		attend.fresh = #{fresh}
+	  	</if>
+	  	<if test="department != null and department != '' ">
+	  	and
+	  		team.department = #{department}
+	  	</if>
+	  	<if test="name != null and name != '' ">
+	  	and
+	  		attend.name = #{name}
+	  	</if>	  		  	
+	   </where>
+	</select>	
+
+	<select id="getMidfieldMemberList" parameterType="spring.board.model.Member" resultType="spring.board.model.Member">
+	  select 
+	  	midfield.name,
+	  	midfield.teamCode,
+	  	midfield.state,
+	  	team.department,
+	  	team.team  
+	  from 
+	  	midfield, team
+	  <where>
+	 		midfield.teamCode = team.teamCode
+	  	and
+			midfield.no = team.no 	 		
+	 	and
+	 		team.no = #{no}	 
+	  	<if test="teamCode != null and teamCode != '' ">
+	  	and
+	  		midfield.teamCode = #{teamCode}
+	  	</if>
+	  	<if test="department != null and department != '' ">
+	  	and
+	  		team.department = #{department}
+	  	</if>
+	  	and
+	  		midfield.state != 'F'
+	   </where>
+	</select>
+
+	<insert id="insertIP" parameterType="map">
+		insert into
+			ip
+			(ip, days, action)
+		value
+			(#{ip}, sysdate(), #{action}) 
+	</insert>
+		
+</mapper>

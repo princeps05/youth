@@ -1,0 +1,36 @@
+<script id="template" type="text/x-handlebars-template">
+{{#result}}
+<table class="table table-condensed table-bordered">
+	<thead>
+		<tr>
+			<td colspan="4" class="team">{{team}}</td>
+		</tr>
+	</thead>
+	<tbody class="prayList">
+		{{#prayList}}
+		<tr>
+			<td colspan="3">{{this}}</td>
+		</tr>
+		{{/prayList}}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>새가족</td>
+			<td class="freshList" colspan="3">
+			{{#freshList}}
+			<span>{{this}}</span>
+			{{/freshList}}
+			</td>
+		</tr>
+		<tr>
+			<td>결석</td>
+			<td class="absenceList" colspan="3">
+			{{#absenceList}}
+			<span>{{this}}</span>
+			{{/absenceList}}
+			</td>
+		</tr>
+	</tfoot>
+</table>
+{{/result}}
+</script>

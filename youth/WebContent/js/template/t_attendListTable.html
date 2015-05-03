@@ -1,0 +1,24 @@
+<script id="template" type="text/x-handlebars-template">
+<div class="table-responsive">
+	<table class="table table-condensed table-bordered">
+		<thead>	<tr><td>번호</td>	<td>이름</td>	<td>출결</td>	</tr></thead>
+		<tbody id="teamMemberList">
+			{{#result}}
+			<tr data-fresh="{{fresh}}" data-state="{{state}}" data-attend="{{attend}}">
+				<td>{{plusOne @index}}</td>
+				<td class="name" data-key="name">{{name}}</td>
+				<td class="attend" data-key="attend">
+					{{#if attend}}출석{{else}}결석{{/if}}
+				</td>
+			</tr>
+			{{/result}}			
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>출 / 결</td>
+				<td colspan="2"><span id="teamAttendCount"></span> / <span	id="teamAbsenceCount"></span></td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+</script>

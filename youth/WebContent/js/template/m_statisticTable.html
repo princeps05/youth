@@ -1,0 +1,25 @@
+<script id="template" type="text/x-handlebars-template">
+	<div class="table-responsive">
+	<table class="table table-condensed table-bordered">	
+		<thead><tr><td>팀</td><td>이번주일</td><td>지난주일</td></tr></thead>
+
+		<tbody id="teamStatistic">
+			{{#result}}
+			<tr data-teamcode="{{teamCode}}">
+				<td class="team">{{team}}</td>
+				<td class="this_week"><span class="this_week_attend"></span><span class="this_week_fresh"></span></td>
+				<td class="last_week"><span class="last_week_attend"></span><span class="last_week_fresh"></span></td>
+			</tr>
+			{{/result}}
+		</tbody>
+		
+		<tfoot id="departmentStatistic">
+			<tr>
+			<td>출석</td>
+			<td><span id="this_week_attend_sum">0</span>&nbsp;/&nbsp;<span id="this_week_fresh_sum">0</span></td>
+			<td><span id="last_week_attend_sum">0</span>&nbsp;/&nbsp;<span id="last_week_fresh_sum">0</span></td>
+			</tr>
+		</tfoot>
+	</table>
+	</div>
+</script>

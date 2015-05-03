@@ -1,0 +1,74 @@
+#menuBtn	{
+	left: 15px;
+}
+#menuBtn.active	{
+	position: fixed;
+}
+
+	div	{
+		text-align: center;
+	}
+	.team, .prayList, .absenceList, .freshList {
+		text-align: left;
+	}
+	.prayList {
+		padding: 0 10px 0 14px;
+	}
+	.team	{
+		font-weight: bold;
+		background-color: #FFB7C5 !important;
+		text-align: center;
+	}
+	.md	{
+		background: #FF91AF;
+		font-size: 14pt;
+	}
+	#thisWeekStatistic	{
+		margin: 5px 7px 5px 12px;
+	}
+	#thisWeekTeamReport	{
+		margin: 5px 1px 5px 1px;
+	}
+	#teamAttend	{
+		margin: 5px 14px 5px 14px;
+	}
+	#teamPray, #teamFresh	{
+		margin: 5px -3px 1px -3px;
+	}	
+	#departmentStatistic	{
+		background-color: #FFD1DC;
+	}
+	#page-main-wrapper, #page-team-wrapper, #page-my-wrapper	{
+		display: none;
+	}
+	#page-main-wrapper.active, #page-team-wrapper.active, #page-my-wrapper.active	{
+		display: block;
+	}
+	#page-my-wrapper	{
+		margin-left: 20px;
+	}
+	#page-my-wrapper div.row	{
+		text-align: left;
+	}	
+	tr.red	{
+		background-color: #FF2448 !important;
+	}
+	tr.yellow	{
+		background-color: #FFF000 !important;
+	}
+
+	#mainCalendar, #teamCalendar	{
+		border: none;
+		text-align: center;		
+	}
+	.prayList tr	{
+		height: 30px;
+	}
+	
+	.this_week_fresh, .last_week_fresh	{
+		margin-left: 10px;
+	}
+	
+	button.part {
+		margin: 14px;
+	}
