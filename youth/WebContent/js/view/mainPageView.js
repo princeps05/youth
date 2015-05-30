@@ -49,6 +49,8 @@ define([
 	
 	var calculateThisWeekDepartmentStatistic = function() {
 
+		console.log("calculateThisWeekDepartmentStatistic");
+		
 		var $this,
 			this_week_attend_count = 0,
 			this_week_fresh_count = 0,
@@ -83,14 +85,14 @@ define([
 	var viewThisWeekTeamReport = function(result) {
 		
 		console.log("viewThisWeekTeamReport");
-		
+
 		var template = Handlebars.compile( $(m_reportTable).html() ),
 			html = template({"result" : result});
 
-		$Selector.$pageMainWrapper.find("#thisWeekTeamReport").html(html).find(".freshList, .absenceList").each(function() {
+		$Selector.$pageMainWrapper.find("#thisWeekTeamReport").html(html).find("td.freshList, td.absenceList, .prayList td").each(function() {
 			!$(this).text().trim() && $(this).closest("tr").hide(); 
 		});
-		
+
 		return "success";
 	};
 	

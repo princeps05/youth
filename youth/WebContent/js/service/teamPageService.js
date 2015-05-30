@@ -57,7 +57,7 @@ define([
 		}
 
 		Q.all( [ processTeamAttendList(), processTeamPrayList(), Q.fcall(TeamPageView.viewTeamInfo,_days, _department, _teamCode, _team), Q.fcall(TeamPageView.viewFreshInputForm), Q.fcall(TeamPageView.viewButton)] )
-		 .spread(function(a,b,c,d,e){	console.log(a,b,c,d,e);	});
+		 .spread(function(a,b,c,d,e){	console.log(a,b,c,d,e); });
 	};
 	
 	var reloadTeamPage = function()	{

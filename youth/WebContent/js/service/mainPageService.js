@@ -38,7 +38,6 @@ define([
 		.then(function(result) {	return Q.all( [MainPageModel.getThisWeekTeamStatistic(_days1), MainPageModel.getThisWeekTeamStatistic(_days2)] );	})
 		.spread(function(obj1, obj2) {	return Q.all ( [ Q.fcall(MainPageView.viewThisWeekTeamStatistic, "this_week", obj1), Q.fcall(MainPageView.viewThisWeekTeamStatistic, "last_week", obj2)] );	})
 		.then(MainPageView.calculateThisWeekDepartmentStatistic);
-	
 	};
 	
 	return {

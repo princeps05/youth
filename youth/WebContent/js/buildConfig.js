@@ -53,6 +53,7 @@ require([
 
 /**
 C:\Java\workspace\mid\WebContent\build
+C:\Users\lee\git\youth\youth\WebContent\build
 
 node r.js -o cssIn=../css/one.css out=../allInOne/main.css optimizeCss=default
 

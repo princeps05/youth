@@ -5,6 +5,10 @@
 	position: fixed;
 }
 
+th.picker__weekday	{
+	text-align: center;
+}
+
 	div	{
 		text-align: center;
 	}

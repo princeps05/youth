@@ -35,7 +35,7 @@ define([
 		
 		$Selector.$teamCalendar.data("value", Moment().day("Sunday").format("YYYY-MM-DD"));
 		
-		$Selector.$teamCalendar.pickadate({			
+		$Selector.$teamCalendar.pickadate({
 			
 			onSet: function(context){
 				

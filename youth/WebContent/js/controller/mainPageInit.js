@@ -5,7 +5,7 @@ define([
    	'pickerdate'	,  	
    	'moment'
    	
-], function(MainPageService, $Selector, Pickerdate,Moment)	{   
+], function(MainPageService, $Selector, Pickerdate, Moment)	{   
 
 	var init = function() {
 		
@@ -20,7 +20,7 @@ define([
 					
 					MainPageService.loadMainPage(selectedDate, sevenDaysAgo);
 			}
-		});		
+		});
 		
 		return "mainPageInit init 성공";
 	};		
