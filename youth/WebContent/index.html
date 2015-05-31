@@ -10,8 +10,8 @@
 	<link rel="apple-touch-startup-image" href="dure.jpg?v=20140908">
 	<link rel="icon" href="favicon.ico?v=20140908" type="image/x-icon">
 
-<!--<link rel="stylesheet" href="allInOne/main.css?v=20150501">-->
-<link rel="stylesheet" href="css/one.css">
+<link rel="stylesheet" href="allInOne/main.css?v=20150531">
+<!--<link rel="stylesheet" href="css/one.css">-->
 <!--<script>
       var cb = function() {
         var l = document.createElement('link'); l.rel = 'stylesheet';
@@ -23,8 +23,8 @@
       if (raf) raf(cb);
       else window.addEventListener('load', cb);
 </script>-->
-<!--<script defer src="allInOne/main.js?v=20150501"></script>-->
-<script defer data-main="js/main" src="js/lib/require.min.js?v=20150429"></script>
+<script defer src="allInOne/main.js?v=20150531"></script>
+<!--<script defer data-main="js/main" src="js/lib/require.min.js?v=20150429"></script>-->
 </head>
 
 <body>
@@ -46,7 +46,7 @@
     <article id="page-main-wrapper" class="active">
 		<header class="header" id="sumStatistic">
 			<h4><span id="department" class="text-success">청년부</span><span> 출석</span></h4>
-			<input id="mainCalendar" class="text-primary" type="text" data-value="" />
+			<span class="glyphicon glyphicon-calendar" aria-hidden="true" id="mainCalendarIco"></span><input id="mainCalendar" class="text-primary" type="text" data-value="" />
 			<h5><span>이번주일 : </span><span id="h_this_week_attend"></span>/<span id="h_this_week_fresh"></span> <span>(지난주일 : </span><span id="h_last_week_attend"></span>/<span id="h_last_week_fresh"></span>)</h5>
 		</header>
 		<section class="row" id="thisWeekStatistic"></section>
@@ -57,7 +57,7 @@
     	<header class="header">
     		<h4 id="t_team" class="text-success"data-teamcode=""></h4>
     		<input id="t_department" type="hidden" />
-    		<input id="teamCalendar" type="text" data-value="" />
+    		<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><input id="teamCalendar" type="text" data-value="" />
    		</header>
    		<section class="row" id="teamAttend"></section>	
     	<section class="row" id="teamPray"></section>

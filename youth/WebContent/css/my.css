@@ -5,6 +5,10 @@
 	position: fixed;
 }
 
+span.glyphicon-calendar{
+	right: -40px;
+}
+
 th.picker__weekday	{
 	text-align: center;
 }

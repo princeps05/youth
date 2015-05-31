@@ -12,6 +12,7 @@ define([
 	var $audioWrapper = $wrapper.find("#audio-wrapper");	
 	var $menuBtn = $wrapper.find("#menuBtn");			
 	var $mainCalendar = $wrapper.find("#mainCalendar");
+	var $mainCalendarIco = $wrapper.find("#mainCalendarIco");
 	var $teamCalendar = $wrapper.find("#teamCalendar");
 	var $teamCalendar_hidden = $wrapper.find("#teamCalendar_hidden");	
 
@@ -25,6 +26,7 @@ define([
 		$audioWrapper : $audioWrapper	,
 		$menuBtn : $menuBtn	,
 		$mainCalendar : $mainCalendar	,
+		$mainCalendarIco : $mainCalendarIco	,
 		$teamCalendar : $teamCalendar	,
 		$teamCalendar_hidden : $teamCalendar_hidden			
 	};
